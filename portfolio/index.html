@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modern Portfolio</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+:root{
+  --sky:#0ea5e9;
+  --sky-soft:#bfe8ff;
+  --bg-soft:#f7fbff;
+}
+body{ scroll-behavior:smooth; background:var(--bg-soft); }
+
+/* NAVBAR */
+nav{ background:#ffffff; box-shadow:0 2px 20px rgba(0,0,0,.05); }
+.navbar-brand{ color:var(--sky); font-weight:800; letter-spacing:.5px; }
+.nav-link{ font-weight:600; color:#111 !important; }
+.nav-link:hover,.nav-link.active{ color:var(--sky) !important; }
+
+/* HERO */
+.hero{
+  padding:130px 0 100px;
+  background:linear-gradient(180deg,#ffffff 10%, #e8f7ff 70%);
+}
+.hero-card{
+  background:#fff;
+  border-radius:22px;
+  padding:40px;
+  box-shadow:0 20px 60px rgba(14,165,233,.18);
+}
+
+/* Section Background + Spacing */
+.about-section{
+  background:#f8fbff;
+}
+
+/* Title */
+.section-title{
+  font-weight:800;
+  letter-spacing:.3px;
+  margin-bottom:12px;
+}
+
+/* Card Base Style */
+.about-card{
+  background:#ffffff;
+  border:1px solid #e5efff;
+  border-radius:14px;
+  padding:16px 18px;
+  transition:.25s ease;
+  box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+/* Highlight Card (Primary Accent) */
+.highlight-card{
+  border:1px solid #b8dcff;
+  background:linear-gradient(135deg,#ffffff,#eff7ff);
+}
+
+/* Small Title */
+.card-title-sm{
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+/* Hover Effect */
+.about-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+/* SECTIONS */
+section{ padding:90px 0; }
+
+/* TITLES */
+.section-title{
+  font-weight:800;
+  letter-spacing:.5px;
+  color:#0b0f19;
+}
+.section-underline{
+  width:70px; height:4px; border-radius:999px;
+  background:var(--sky);
+  margin:10px auto 25px;
+}
+
+.timeline{
+  position:relative;
+  margin-top:25px;
+  padding-left:15px;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:18px;
+  top:0;
+  width:3px;
+  height:100%;
+  background:#dbeafe;
+  border-radius:10px;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:28px;
+}
+
+.timeline-dot{
+  position:absolute;
+  left:8px;
+  width:20px;
+  height:20px;
+  background:var(--sky);
+  border-radius:50%;
+  border:3px solid #fff;
+  box-shadow:0 0 12px rgba(14,165,233,.35);
+}
+
+.timeline-card{
+  margin-left:45px;
+  background:#ffffff;
+  border:1px solid #dbeafe;
+  border-radius:14px;
+  padding:14px 16px;
+  box-shadow:0 8px 28px rgba(0,0,0,.06);
+  transition:.25s;
+}
+
+.timeline-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--sky);
+  box-shadow:0 18px 45px rgba(14,165,233,.25);
+}
+
+
+/* SKILLS SECTION */
+#skills{
+  background:#f7fbff;
+}
+
+.skill-box{
+  background:#ffffff;
+  border-radius:14px;
+  border:1px solid #dbeafe;
+  padding:16px 14px;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:#0981a2;
+  transition:.28s ease;
+  box-shadow:0 10px 28px rgba(0,0,0,.05);
+}
+
+/* Hover Motion + Glow */
+.skill-box:hover{
+  transform:translateY(-6px) scale(1.02);
+  border-color:var(--sky);
+  box-shadow:0 20px 50px rgba(14,165,233,.25);
+}
+
+/* Slight gradient accent */
+.skill-box::after{
+  content:"";
+  display:block;
+  height:3px;
+  width:28px;
+  margin:6px auto 0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#38bdf8,#0ea5e9);
+  opacity:0;
+  transition:.25s;
+}
+
+.skill-box:hover::after{
+  opacity:1;
+}
+
+/* Responsive spacing */
+@media(max-width:768px){
+  .skill-box{
+    padding:14px;
+    font-size:.9rem;
+  }
+}
+
+#navbar-brand{
+
+    font-weight:800;
+    letter-spacing:.5px;
+    color:var(--sky);
+
+}
+#navbar-brand:hover{
+
+    color:var(--sky);
+
+}
+
+/* PROJECT CARDS */
+.project-card{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid #dbeafe;
+  padding:16px;
+  transition:.25s;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 60px rgba(14,165,233,.25);
+  border-color:var(--sky);
+}
+.project-img{
+  height:230px;
+  border-radius:12px;
+  object-fit:cover;
+}
+
+/* CONTACT */
+form{
+  background:#fff;
+  border-radius:18px;
+  padding:25px;
+  border:1px solid #dbeafe;
+  box-shadow:0 10px 40px rgba(14,165,233,.12);
+}
+
+.btn-sky{
+  background:#0ea5e9;
+  color:#fff;
+  border-radius:10px;
+  padding:10px 20px;
+  font-weight:600;
+  transition:.25s ease;
+}
+
+.btn-sky:hover{
+  background:#0284c7;      /* darker sky blue */
+  color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(14,165,233,.35);
+}
+/* ABOUT SECTION */
+.about-section{
+  background:#f8fbff;
+}
+
+.section-title{
+  font-weight:800;
+  letter-spacing:.4px;
+  color:#0b0f19;
+}
+
+/* About Cards */
+.about-card{
+  background:#a7dded;
+  border:1px solid #e3eeff;
+  border-radius:16px;
+  padding:14px 18px;
+  transition:.28s ease;
+  box-shadow:0 10px 28px rgba(0,0,0,.05);
+}
+
+.about-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--sky);
+  box-shadow:0 18px 48px rgba(14,165,233,.25);
+}
+
+/* Highlight Card */
+.highlight-card{
+  background:linear-gradient(135deg,#ffffff,#eff7ff);
+  border:1px solid #698fb3;
+}
+
+/* Small Title */
+.card-title-sm{
+  font-weight:700;
+  letter-spacing:.3px;
+  margin-bottom:4px;
+}
+
+/* Paragraph text refinement */
+.about-section p{
+  color:#374151;
+  line-height:1.65;
+  font-size:.95rem;
+}
+
+/* Responsive spacing */
+@media (max-width:992px){
+  .about-section .row{
+    text-align:center;
+  }
+}
+
+
+/* FOOTER */
+footer{
+  background:var(--sky);
+  color:#fff;
+  padding:28px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand " href="#">Shweta</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="home" class="hero">
+  <div class="container">
+    <div class="hero-card text-center mx-auto col-lg-8">
+      <h1 class="fw-bold mb-2">Hi, I’m <span style="color:var(--sky)">Shweta</span></h1>
+      <p class="lead">Web Developer • Android Developer • Programmer</p>
+      <a href="#projects" class="btn btn-sky mt-2">View My Work</a>
+      <a href="#projects" class="btn btn-sky mt-2">Download Resume</a>
+      
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="py-5 about-section">
+  <div class="container">
+
+    <!-- Top Row -->
+    <div class="row g-4">
+
+      <!-- Left Text Block -->
+      <div class="col-lg-6">
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I am a passionate web developer who loves building clean,
+          responsive and user-focused websites. I enjoy solving problems,
+          learning new technologies and improving myself through real-world projects.
+        </p>
+
+        <p>
+          My work focuses on writing efficient code, creating smooth UI
+          experiences and designing layouts that feel balanced and professional.
+        </p>
+      </div>
+
+      <!-- Right Highlight Cards -->
+      <div class="col-lg-6">
+        <div class="row g-3">
+
+          <div class="col-12">
+            <div class="about-card highlight-card">
+              <h6 class="card-title-sm">What I Do</h6>
+              <p class="mb-0 small">
+                Frontend Development • UI Layouts • Responsive Design
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="about-card">
+              <h6 class="card-title-sm">Strength</h6>
+              <p class="mb-0 small">Problem Solving</p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="about-card">
+              <h6 class="card-title-sm">Interest</h6>
+              <p class="mb-0 small">Learning & Creativity</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="row g-3 mt-4">
+
+      <div class="col-md-4">
+        <div class="about-card">
+          <h6 class="card-title-sm">Experience</h6>
+          <p class="mb-0 small">Frontend Practice & Personal Projects</p>
+        </div>
+      </div>
+
+      
+
+      <div class="col-md-4">
+        <div class="about-card">
+          <h6 class="card-title-sm">Goal</h6>
+          <p class="mb-0 small">Become a strong frontend developer</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container text-center">
+    <h2 class="section-title">Skills</h2>
+    <div class="section-underline"></div>
+
+    <div class="row g-4 mt-3">
+      <div class="col-6 col-md-3"><div class="skill-box">HTML</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">CSS</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">Bootstrap</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">JavaScript</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">React</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">Java</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">Python</div></div>
+      <div class="col-6 col-md-3"><div class="skill-box">Koltin</div></div>
+
+
+
+        <div class="col-6 col-md-3"><div class="skill-box">Git</div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Education</h2>
+    <div class="section-underline"></div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h5 class="fw-bold mb-1">Bachelor of Computer Engineering</h5>
+          <p class="small mb-1">XYZ University</p>
+          <p class="small text-muted mb-2">2023 — Present</p>
+          <p class="small mb-0">
+            Focus: Web Development, Programming, Problem Solving, UI/UX
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h5 class="fw-bold mb-1">Higher Secondary (12th Grade)</h5>
+          <p class="small mb-1">ABC Junior College</p>
+          <p class="small text-muted mb-2">2021 — 2023</p>
+          <p class="small mb-0">
+            Subjects: Physics, Chemistry, Mathematics, Computer Science
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h5 class="fw-bold mb-1">Secondary School (10th Grade)</h5>
+          <p class="small mb-1">ABC School</p>
+          <p class="small text-muted mb-2">2019 — 2021</p>
+          <p class="small mb-0">
+            Academic Excellence & Participation in Tech Activities
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container text-center">
+    <h2 class="section-title">Projects</h2>
+    <div class="section-underline"></div>
+
+    <div class="row g-4 mt-2">
+
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x230" class="w-100 project-img">
+          <h5 class="mt-3 fw-bold">Smart Expense Tracker</h5>
+          <p>Short description of project.</p>
+          <a href="#" class="btn btn-sky btn-sm">View</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x230" class="w-100 project-img">
+          <h5 class="mt-3 fw-bold">travel Recommendation system</h5>
+          <p>Short description of project.</p>
+          <a href="#" class="btn btn-sky btn-sm">View</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x230" class="w-100 project-img">
+          <h5 class="mt-3 fw-bold">Power BI Dashboard</h5>
+          <p>Short description of project.</p>
+          <a href="#" class="btn btn-sky btn-sm">View</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x230" class="w-100 project-img">
+          <h5 class="mt-3 fw-bold">E commerce App</h5>
+          <p>Short description of project.</p>
+          <a href="#" class="btn btn-sky btn-sm">View</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container text-center">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="section-underline"></div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-6">
+        <form>
+          <input class="form-control mb-3" type="text" placeholder="Your Name">
+          <input class="form-control mb-3" type="email" placeholder="Your Email">
+          <textarea class="form-control mb-3" rows="4" placeholder="Your Message"></textarea>
+          <button class="btn btn-sky w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- FOOTER -->
+<footer class="text-center">
+  © 2026 Your Name — All Rights Reserved
+</footer>
+
+</body>
+</html>
