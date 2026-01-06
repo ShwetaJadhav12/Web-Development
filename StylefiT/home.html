@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StyleFit - Outfit Recommendation Store</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark bg-dark px-4">
+    <span class="navbar-brand">StyleFit 👗</span>
+    <span class="text-white">Cart 🛒 <span id="cartCount">0</span></span>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center text-white">
+    <h1>Find Your Perfect Outfit</h1>
+    <p>Mood-based fashion with virtual try-on</p>
+</section>
+
+<!-- Normal Outfits -->
+
+<div class="container my-5">
+    <h3 class="text-center mb-4">Outfits</h3>
+    <div class="row" id="productList1"></div>
+</div>
+<!-- PRODUCTS -->
+<div class="container my-5">
+    <h3 class="text-center mb-4">Recommended Outfits</h3>
+    <div class="row" id="productList"></div>
+</div>
+<!-- MOOD SELECTOR -->
+<div class="container my-4 text-center">
+    <h4>Select Your Mood</h4>
+    <button class="btn btn-outline-dark m-2" onclick="setMood('happy')">😊 Happy</button>
+    <button class="btn btn-outline-dark m-2" onclick="setMood('confident')">😎 Confident</button>
+    <button class="btn btn-outline-dark m-2" onclick="setMood('bold')">🔥 Bold</button>
+</div>
+
+<!-- TRY ON SECTION -->
+<div class="container">
+    <h3 class="text-center mb-3">Virtual Try-On</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            <img id="model" src="https://i.imgur.com/QlRphfQ.png" class="img-fluid model">
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <button class="btn btn-primary m-1" onclick="changeOutfit('shirt')">Top</button>
+        <button class="btn btn-success m-1" onclick="changeOutfit('pant')">Bottom</button>
+        <button class="btn btn-warning m-1" onclick="changeOutfit('shoe')">Shoes</button>
+    </div>
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

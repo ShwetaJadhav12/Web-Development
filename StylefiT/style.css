@@ -1,0 +1,24 @@
+body {
+    background-color: #f4f4f4;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(to right, #000428, #004e92);
+    padding: 60px 20px;
+}
+
+/* Model Image */
+.model {
+    max-height: 400px;
+    transition: 0.4s;
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
